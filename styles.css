@@ -49,6 +49,28 @@ a {
   margin-bottom: 14px;
 }
 
+.brandline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.site-mark {
+  display: inline-grid;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  place-items: center;
+  border: 1px solid #272927;
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .eyebrow {
   color: var(--muted);
   font-size: 0.76rem;
@@ -189,22 +211,32 @@ a:focus-visible {
 .experience-head {
   display: grid;
   gap: 3px;
+  width: 100%;
 }
 
 .experience-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
+  display: flex;
+  width: 100%;
   gap: 24px;
   align-items: baseline;
+  justify-content: space-between;
 }
 
-.experience-primary h3 {
+.experience-primary h3,
+.experience-role {
   min-width: 0;
+  flex: 1 1 auto;
+}
+
+.institution,
+.experience-date {
+  flex: 0 0 clamp(175px, 33%, 245px);
+  margin-left: auto;
+  text-align: right;
 }
 
 .institution {
   white-space: nowrap;
-  text-align: right;
   font-size: 0.9rem;
   font-weight: 650;
 }
@@ -217,7 +249,6 @@ a:focus-visible {
 
 .experience-date {
   white-space: nowrap;
-  text-align: right;
 }
 
 .compact {
@@ -326,25 +357,6 @@ a:focus-visible {
     text-align: left;
   }
 
-  .experience-row {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
-
-  .institution,
-  .experience-date {
-    white-space: normal;
-    text-align: left;
-  }
-
-  .experience-primary .institution {
-    margin-top: 2px;
-  }
-
-  .experience-secondary {
-    margin-top: 2px;
-  }
-
   .skills-grid p {
     grid-template-columns: 1fr;
     gap: 2px;
@@ -375,6 +387,28 @@ a:focus-visible {
 
   .contact-line > span {
     display: none;
+  }
+
+  .experience-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .institution,
+  .experience-date {
+    width: auto;
+    margin-left: 0;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .experience-primary .institution {
+    margin-top: 2px;
+  }
+
+  .experience-secondary {
+    margin-top: 2px;
   }
 
   .footer {
