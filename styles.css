@@ -186,6 +186,40 @@ a:focus-visible {
   color: var(--muted);
 }
 
+.experience-head {
+  display: grid;
+  gap: 3px;
+}
+
+.experience-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 24px;
+  align-items: baseline;
+}
+
+.experience-primary h3 {
+  min-width: 0;
+}
+
+.institution {
+  white-space: nowrap;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.experience-secondary {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+.experience-date {
+  white-space: nowrap;
+  text-align: right;
+}
+
 .compact {
   margin-bottom: 0;
   font-size: 0.91rem;
@@ -215,6 +249,10 @@ a:focus-visible {
 
 .subproject {
   margin-top: 18px;
+}
+
+.subproject + .subproject {
+  margin-top: 20px;
 }
 
 .subproject h4 {
@@ -286,6 +324,25 @@ a:focus-visible {
   .meta {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .institution,
+  .experience-date {
+    white-space: normal;
+    text-align: left;
+  }
+
+  .experience-primary .institution {
+    margin-top: 2px;
+  }
+
+  .experience-secondary {
+    margin-top: 2px;
   }
 
   .skills-grid p {
