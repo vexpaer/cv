@@ -45,7 +45,7 @@ jobs:
         run: |
           test -s cv.pdf
           mkdir -p dist
-          cp index.html styles.css dist/
+          cp index.html styles.css animations.js dist/
           cp cv.pdf dist/Ximing_Wang_CV.pdf
           touch dist/.nojekyll
 
@@ -54,12 +54,16 @@ jobs:
         run: |
           test -s dist/index.html
           test -s dist/styles.css
+          test -s dist/animations.js
           test -s dist/Ximing_Wang_CV.pdf
           grep -Fq 'Ximing Wang' dist/index.html
           grep -Fq 'South China University of Technology' dist/index.html
           grep -Fq 'Tsinghua University' dist/index.html
           grep -Fq '10.57760/sciencedb.32147' dist/index.html
           grep -Fq './Ximing_Wang_CV.pdf' dist/index.html
+          grep -Fq 'gsap@3.15.0' dist/index.html
+          grep -Fq 'ScrollTrigger' dist/animations.js
+          grep -Fq 'prefers-reduced-motion: no-preference' dist/animations.js
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
