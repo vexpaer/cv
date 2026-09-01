@@ -1,0 +1,206 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.55in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{array}
+
+\pagestyle{empty}
+\linespread{1.01}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\setlist[itemize]{
+  leftmargin=1.15em,
+  itemsep=2.0pt,
+  topsep=2.8pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+% Education entry
+\newcommand{\eduentry}[4]{%
+  \begin{tabularx}{\linewidth}{@{}X>{\raggedleft\arraybackslash}p{0.27\linewidth}@{}}
+    \textbf{#1} & \textbf{#2} \\
+    \textit{#3} & \textit{#4}
+  \end{tabularx}
+}
+
+% Research experience entry
+% First row: project / experience name | institution
+% Second row: position | date + location
+\newcommand{\researchentry}[5]{%
+  \begin{tabularx}{\linewidth}{@{}
+    >{\raggedright\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}X
+    r@{}}
+    \textbf{#1} & \textbf{#2}
+  \end{tabularx}\\[-1pt]
+  \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textit{#3} & \textit{\mbox{#4 \;|\; #5}}
+  \end{tabularx}
+}
+
+% Section separator
+\newcommand{\cvsection}[1]{%
+  \vspace{5pt}
+  \hrule height 0.45pt
+  \vspace{3pt}
+  {\large\bfseries #1}\par
+  \vspace{3pt}
+}
+
+% Sub-project title
+\newcommand{\projecttitle}[1]{%
+  \vspace{1pt}
+  \textbf{#1}\par
+  \vspace{-1pt}
+}
+
+\begin{document}
+
+% ============================================================
+% Header
+% ============================================================
+\begin{center}
+  {\LARGE\bfseries Ximing Wang}\\[-1pt]
+  \href{tel:+8618661675002}{(+86) 186 6167 5002}
+  \;|\;
+  \href{mailto:bs_wxm@mail.scut.edu.cn}{bs\_wxm@mail.scut.edu.cn}
+  \;|\;
+  \href{mailto:vexpaer@gmail.com}{vexpaer@gmail.com}
+\end{center}
+
+\vspace{-7pt}
+
+% ============================================================
+% Education
+% ============================================================
+\cvsection{Education}
+
+\eduentry
+{South China University of Technology}
+{Sep. 2023 -- Present}
+{B.Eng. in Biomedical Engineering; GPA: 3.77/4.00; Average: 87.79/100}
+{Guangzhou, China}
+
+\vspace{2pt}
+\textbf{Selected Coursework:}
+Signals and Systems, Calculus, Linear Algebra,
+Probability and Mathematical Statistics, Physiology,
+Anatomy, Biochemistry, Molecular Biology, Biomechanics
+
+% ============================================================
+% Academic Paper
+% ============================================================
+\cvsection{Academic Paper}
+
+\textbf{An EEG Dataset for Motion Sickness Assessment in Electric Vehicle
+Passengers under Normal and Accelerated Driving}.
+Manuscript under revision at \textit{Scientific Data}.\\[-1pt]
+Dataset:
+\href{https://doi.org/10.57760/sciencedb.32147}{doi.org/10.57760/sciencedb.32147}
+
+% ============================================================
+% Research Interests
+% ============================================================
+\cvsection{Research Interests}
+
+EEG-based neuroengineering;
+biomedical signal processing;
+brain-computer interfaces;
+machine learning for real-time physiological monitoring
+
+% ============================================================
+% Research Experience
+% ============================================================
+\cvsection{Research Experience}
+
+\researchentry
+{Real-World EEG Study of Motion Sickness}
+{South China University of Technology}
+{Undergraduate Researcher}
+{Mar. 2025 -- Sep. 2025}
+{Guangzhou, China}
+
+\begin{itemize}
+  \item Designed and conducted real-vehicle experiments under high-
+  and low-acceleration driving conditions, collecting synchronized
+  32-channel EEG, ECG, and EMG signals from 15 participants.
+  \item Developed an end-to-end physiological-signal analysis workflow
+  covering EEG preprocessing, ICA-based artifact removal, feature
+  extraction, and machine-learning modeling.
+  \item Developed an online motion-sickness monitoring system using
+  synchronized EEG, ECG, and EMG signals.
+\end{itemize}
+
+\vspace{7pt}
+
+\researchentry
+{Driver Fatigue Analysis and OpenBCI Software Development}
+{Tsinghua University}
+{Research Assistant Intern}
+{Mar. 2026 -- Aug. 2026}
+{Beijing, China}
+
+\projecttitle{Driver Fatigue two-channel-EEG Analysis}
+\begin{itemize}
+  \item Analyzed approximately 500 hours of dual-channel EEG,
+  heart-rate, and KSS data from 165 participants collected during
+  daytime and nighttime driving sessions.
+  \item Built a preprocessing and quality-control pipeline for
+  EEG/KSS alignment, artifact screening, segmentation, and continuous
+  fatigue-label construction.
+  \item Developed fatigue-estimation models using time-frequency
+  representations, channel-wise signal decomposition, and contrastive
+  representation learning for robust continuous fatigue estimation.
+\end{itemize}
+
+\projecttitle{OpenBCI Embedded Firmware and Host Software}
+\begin{itemize}
+  \item Developed embedded firmware from scratch for an OpenBCI
+  acquisition board, implementing biosignal acquisition, board
+  configuration, data buffering, device control, and real-time
+  data streaming.
+  \item Built a Python desktop application for device communication,
+  real-time waveform visualization, acquisition control, signal
+  recording, and data export.
+  \item Developed a companion mobile application for device connection,
+  acquisition control, and real-time signal monitoring, completing
+  the software workflow from embedded acquisition to desktop and
+  mobile interfaces.
+\end{itemize}
+
+% ============================================================
+% Awards
+% ============================================================
+\cvsection{Awards}
+
+\textbf{Second Prize},
+10th National Biomedical Engineering Innovation and Design Competition,
+2025
+
+% ============================================================
+% Skills
+% ============================================================
+\cvsection{Skills}
+
+\textbf{Programming and Tools:}
+Python, MATLAB, R, LaTeX, Adobe Illustrator, Photoshop
+
+\textbf{Experimental and Analytical:}
+EEG, ECG, EMG, and fNIRS acquisition;
+embedded firmware development;
+signal preprocessing;
+ICA;
+feature extraction;
+machine-learning modeling
+
+\textbf{Languages:}
+Chinese Mandarin (native);
+English (IELTS: 7.0/9.0; CET-6: 604/710)
+
+\end{document}
