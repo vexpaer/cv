@@ -1,0 +1,89 @@
+name: Build CV and deploy Pages
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cv-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Ensure PDFs are generated, not committed
+        shell: bash
+        run: |
+          if git ls-files '*.pdf' | grep -q .; then
+            echo 'PDF files must not be committed. Keep cv.tex as the PDF source.' >&2
+            git ls-files '*.pdf' >&2
+            exit 1
+          fi
+
+      - name: Compile LaTeX CV
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: cv.tex
+          texlive_version: 2026
+          os: debian
+          compiler: latexmk
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Assemble static site
+        shell: bash
+        run: |
+          test -s cv.pdf
+          mkdir -p dist
+          cp index.html styles.css dist/
+          cp cv.pdf dist/Ximing_Wang_CV.pdf
+          touch dist/.nojekyll
+
+      - name: Verify web CV
+        shell: bash
+        run: |
+          test -s dist/index.html
+          test -s dist/styles.css
+          test -s dist/Ximing_Wang_CV.pdf
+          grep -Fq 'Ximing Wang' dist/index.html
+          grep -Fq 'South China University of Technology' dist/index.html
+          grep -Fq 'Tsinghua University' dist/index.html
+          grep -Fq '10.57760/sciencedb.32147' dist/index.html
+          grep -Fq './Ximing_Wang_CV.pdf' dist/index.html
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
