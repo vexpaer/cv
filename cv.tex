@@ -7,6 +7,7 @@
 \usepackage{microtype}
 \usepackage{tabularx}
 \usepackage{enumitem}
+\usepackage{needspace}
 \usepackage[hidelinks]{hyperref}
 \usepackage{array}
 
@@ -42,6 +43,27 @@
   \begin{tabularx}{\linewidth}{@{}Xr@{}}
     \textit{#3} & \textit{\mbox{#4 \;|\; #5}}
   \end{tabularx}
+}
+
+% One continuous internship; organization ownership is shown per project.
+\newcommand{\internshipentry}[4]{%
+  \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1} & \textbf{#4}
+  \end{tabularx}\\[1pt]
+  \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textit{#2} & \textit{#3}
+  \end{tabularx}
+}
+
+% Paired project title and host, aligned on opposite sides of a single row.
+\newcommand{\projectorgtitle}[2]{%
+  \vspace{3pt}
+  \begin{tabularx}{\linewidth}{@{}
+    >{\raggedright\arraybackslash}X
+    >{\raggedleft\arraybackslash}p{0.44\linewidth}@{}}
+    \textbf{#1} & {\small\itshape #2}
+  \end{tabularx}\par
+  \vspace{1pt}
 }
 
 % Section separator
@@ -141,14 +163,15 @@ machine learning for real-time physiological monitoring
 
 \vspace{1\baselineskip}
 
-\researchentry
+\internshipentry
 {Driver Fatigue Analysis and OpenBCI Software Development}
-{Zhang Dan Lab, Tsinghua University}
-{Research Assistant Intern}
+{Research \& Development Intern}
 {Mar. 2026 -- Aug. 2026}
 {Beijing, China}
 
-\projecttitle{Driver Fatigue two-channel-EEG Analysis}
+\projectorgtitle
+{Driver Fatigue Two-Channel EEG Analysis}
+{Zhang Dan Lab, Tsinghua University}
 \begin{itemize}
   \item Analyzed approximately 500 hours of dual-channel EEG,
   heart-rate, and KSS data from 165 participants collected during
@@ -161,7 +184,10 @@ machine learning for real-time physiological monitoring
   representation learning for robust continuous fatigue estimation.
 \end{itemize}
 
-\projecttitle{OpenBCI Embedded Firmware and Host Software}
+\Needspace{12\baselineskip}
+\projectorgtitle
+{OpenBCI Firmware and Host Software}
+{BrainSong Technology (Consumer BCI Startup)}
 \begin{itemize}
   \item Developed embedded firmware from scratch for an OpenBCI
   acquisition board, implementing biosignal acquisition, board
