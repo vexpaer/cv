@@ -60,7 +60,7 @@ jobs:
           grep -Fq 'Ximing Wang' dist/index.html
           grep -Fq 'South China University of Technology' dist/index.html
           grep -Fq 'Tsinghua University' dist/index.html
-          grep -Fq '10.57760/sciencedb.32147' dist/index.html
+          grep -Fq 'Scientific Data' dist/index.html
           grep -Fq './Ximing_Wang_CV.pdf' dist/index.html
           grep -Fq './favicon.svg' dist/index.html
           grep -Fq 'site-mark' dist/index.html
